@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" 
+          content="width=device-width, initial-scale=1.0">
+    <title>Java Competency</title>
+    
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+        crossorigin="anonymous" />
+                <style>
+			 .tb { 
+				 border-collapse: collapse; 
+				 width:1000px; 
+				 }
+  			.tb th, .tb td {
+				  
+				   padding: 5px;
+  				   border: solid 1px #777;
+  				    width:1000px; 
+  			 	
+  			  }
+  .tb th { 
+	  background-color: rgb(107, 1, 158);
+	  color: white;
+	  
+	  	  }
+    .wrapper{
+        display: inline-block;
+        margin: 50px;
+        
+        
+        
+    }
+    img{
+        border: 20px solid white;
+    }
+    .topnav {
+  overflow: hidden;
+  background-color: rgb(107, 1, 158);
+  line-height: 30px;
+  width: 15%;
+  font-family: Arial;
+    font-weight: bold;
+}
+.topnav a {
+  float: left;
+  display: block;
+  width:500px;
+  color: black;
+  text-align: left;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 16px;
+  color:#fff;
+  font-family: Arial;
+    font-weight: bold;
+} 
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+ 
+.topnav a.active {
+  background-color: #2196F3;
+  color: white;
+}
+
+.topnavi {	
+  font-size: 16px;	
+  overflow: hidden;
+  background-color:  rgb(107, 1, 158);
+  line-height: 40px;
+  color:#fff;
+  text-align:left;
+  font-family: Arial;
+    font-weight: bold;
+}
+</style>
+</head>
+<body>
+	<div>
+	<a href="/javacapability/index"><p div class="topnavi">&nbsp &nbsp DXC Technology</p></a>
+	<center>	<p><h1>Java Capability Competency</h1></p></center><div class="topnav">
+	<ui>
+            <a href="teamjavaproficiency">Team's Java Proficiency</a>
+            <a href="javacompetencySearch">Java Competency Update</a> 
+            <a href="javaproficiencymetrics">Java Proficiency Metrics</a>
+     </ui> 
+	</div>
+	 <center>
+<div class="wrapper">
+  <br>
+  <h3>Java Competency Update</h3>
+  <hr/>
+  
+  
+  <form action="#" th:action="@{/javacapability/eidupdate}"
+  th:object="${jc}" method="GET,POST">
+   <table class="table  table-hover  table-striped">
+   <thead class="thead-info">
+      <tr th:if="${jc}">
+         <th>Employee ID</th>
+       <!--  <td th:text="${jc.employee_Id}"></td> -->
+         <td> <input type="number"  class="w3-input w3-border-0" placeholder="employee_Id"  id="employee_Id" name="employee_Id"  th:value="*{employee_Id}" readonly></td>
+      </tr>
+   </thead>
+   <tr th:if="${jc}">
+      <th>Email Id</th>
+      <td th:text="${jc.email_Id}"></td>
+   </tr>
+   <tr th:if="${jc}">
+      <th>Java Building Block</th>
+      <td th:text="${jc.java_Building_Block}"></td>
+   </tr>
+   <tr th:if="${jc}">
+      <th>Type</th>
+      <td th:text="${jc.type}"></td>
+   </tr>
+   <tr th:if="${jc}">
+      <th>Catagory</th>
+      <td th:text="${jc.catagory}"></td>
+   </tr>
+   <tr th:if="${jc}">
+      <th>Competency</th>
+      <td> <input type="text"  class="w3-input w3-border-0" placeholder="competency" id="competency" name="competency"  th:value="*{competency}" readonly></td>
+   </tr>
+   <tr th:if="${jc}">
+      <th>Proficiency</th>
+	<!-- <td>  <input type="text"  class="form-control mb-2 col-4" placeholder="Proficiency"id="proficiency" name="proficiency"  th:value="*{proficiency}"></td> -->
+  <td>	 <select id="proficiency" name="proficiency">
+		<option th:each="proficiency : ${jc.proficiency}"
+		  th:text="${proficiency}" th:value="*{proficiency}"  > selected</option>
+		  <option value="Basic Understanding">Basic Understanding</option>
+		  <option value="Working Experience">Working Experience</option>
+		  <option value="Extensive Experience">Extensive Experience</option>
+		  <option value="Subject MaterExperience">Subject MaterExperience</option>   
+	  </select>  </td>
+   </tr>
+   </tr>
+   <tbody>
+   </tbody>
+</table>
+  <button type="submit" class="btn btn-success" align="center">Update</button>
+  </form>
+  </br>
+  <a th:href="@{/javacapability/javacompetencySearch}" class="btn btn-success mb-2 col-2">Back</a>
+</div>
+	 </center>
+	</div>
+</body>
+</html>

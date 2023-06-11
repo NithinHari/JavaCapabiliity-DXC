@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Proficiency</title>
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+        crossorigin="anonymous" />
+        
+        
+ <style>
+.tb { 
+	border-collapse: collapse;
+	width:1300px;
+	 }
+.tb th, .tb td { 
+	 padding: 5px; 
+	 border: solid 1px #777; 
+	 }
+.tb th { 
+	  background-color: rgb(107, 1, 158);
+	  color: white;
+	  }
+.wrapper{
+      display: inline-block;
+      margin: 50px;   
+    }
+img{
+       border: 20px solid white;
+    }
+    
+.topnav {
+  overflow: hidden;
+  background-color: rgb(107, 1, 158);
+  line-height: 30px;
+  width: 15%;
+  font-family: Arial;
+    font-weight: bold;
+}
+.topnav a {
+  float: left;
+  display: block;
+  width:500px;
+  color: black;
+  text-align: left;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 16px;
+  color:#fff;
+  font-family: Arial;
+    font-weight: bold;
+} 
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+ 
+.topnav a.active {
+  background-color: #2196F3;
+  color: white;
+  font-family: Arial;
+    font-weight: bold;
+}
+
+.topnavi {	
+  font-size: 16px;	
+  overflow: hidden;
+  background-color:  rgb(107, 1, 158);
+  line-height: 40px;
+  color:#fff;
+  text-align:left;
+  font-family: Arial;
+    font-weight: bold;
+}
+
+/* Search */
+
+
+
+/* Style the search field */
+form.example input[type=text] {
+  padding: 10px;
+  font-size: 12px;
+  border: 1px solid grey;
+  float: right;
+  width: 80%;
+  background: #f1f1f1;
+}
+
+/* Style the submit button */
+form.example button {
+  float: right;
+  width: 3%;
+  padding: 10px;
+  background: rgb(107, 1, 158);
+  color: white;
+  font-size: 5px;
+  border: 1px solid grey;
+  border-left: none; /* Prevent double borders */
+  cursor: pointer;
+}
+
+form.example button:hover {
+  background: #ddd;
+}
+
+/* Clear floats */
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+ </style>
+
+</head>
+<body>
+	<div>
+	<a href="/javacapability/index"><p div class="topnavi">&nbsp &nbsp DXC Technology</p></a>
+	<center>	<p><h1>Java Capability Competency</h1></p></center><div class="topnav">
+	<ui>
+            <a href="teamjavaproficiency">Team's Java Proficiency</a>
+            <a href="javacompetencySearch">Java Competency Update</a> 
+            <a href="javaproficiencymetrics">Java Proficiency Metrics</a>
+     </ui> 
+	</div>
+	
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<form class="example" align="right" th.action="@{/teamjavaproficiency}">
+  <input type="email" placeholder="Email Id" name="emailId" id="emailId" size="20" th:value="${emailId}" required />
+  <button type="submit"><i class="fa fa-search"></i></button>
+  <input type="button" value="Clear" id="btnClear" onclick="clearSearch()" />
+</form>
+&nbsp
+<form class="example" align="right" th.action="@{/teamjavaproficiency}">
+<input type="number" placeholder="Employee Id" name="employeeId" id="employeeId" size="50" th:value="${employeeId}" required />
+  <button type="submit"><i class="fa fa-search"></i></button>
+  <input type="button" value="Clear" id="btnClear" onclick="clearSearch()" />
+	</form>
+	<script type="text/javascript">
+    function clearSearch() {
+        window.location = "[[@{/javacapability/teamjavaproficiency}]]";
+    }
+</script>
+<center>
+<div class="wrapper">
+  <br>
+  <h3>Team's Java Proficiency</h3>
+  <hr/>
+    
+  <table id="mytable", class="tb">
+
+    <thead>
+    <tr class="header">
+      <th>Employee Id</th>
+      <th>Email</th>
+      <th >Competency Name</th>
+      <th>proficiency</th>
+      
+      
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="epList: ${epList}">
+      <td th:text="${epList.employee_Id}"></td>
+      <td th:text="${epList.email_Id}"></td>
+            <td th:text="${epList.competency_Name}"></td>
+
+       <td th:text="${epList.proficiency}"></td>
+     
+      <!-- epList 
+      	   jpList
+      -->
+    </tr>
+    </tbody>
+
+  </table>
+</div>
+</center>
+
+</body>
+</html>
